@@ -79,7 +79,28 @@ body:not(.open) .names h1{opacity:0}
 .btn{display:inline-block;margin-top:14px;padding:12px 24px;min-height:48px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;box-shadow:0 4px 0 rgba(31,58,95,.35)}
 .btn:hover{background:#2A5388}
 .bday{--c:var(--sun);background:#FFF1B8}
-.bday svg{width:64px;height:auto;animation:bob 2.2s ease-in-out infinite}
+.bday{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(#FFF1B8,#FFE08A);padding-top:0}
+.garland{display:block;width:calc(100% + 40px);height:auto;margin:0 -20px 12px}
+.bday .bt{font-family:'Fredoka',sans-serif;font-weight:700;font-size:32px;line-height:1.15}
+.cake{all:unset;display:block;width:150px;margin:6px auto 0;cursor:pointer;border-radius:16px}
+.cake:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+.cake:active{transform:scale(.95)}
+.cake svg{display:block;width:100%;height:auto}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .45s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1,1) rotate(-4deg)}to{transform:scale(.85,1.15) rotate(4deg)}}
+.out .flame{display:none}
+.smoke{opacity:0}
+.out .smoke{animation:smoke 1.8s ease-out}
+@keyframes smoke{from{opacity:.9;transform:translateY(0)}to{opacity:0;transform:translateY(-26px)}}
+#wish{min-height:2.4em;margin-top:10px;font-weight:700;font-size:17px}
+.out #wish{font-family:'Fredoka',sans-serif;font-size:27px;line-height:1.2;color:var(--coral);animation:pop .7s cubic-bezier(.34,1.56,.64,1)}
+.bl{position:absolute;bottom:-70px;z-index:-1;width:28px;height:34px;border-radius:50% 50% 48% 48%;animation:floatup linear infinite}
+.bl::after{content:'';position:absolute;left:50%;top:100%;width:2px;height:28px;background:rgba(31,58,95,.45)}
+@keyframes floatup{50%{margin-left:14px}to{transform:translateY(-560px) rotate(8deg)}}
+.n4{position:relative}
+.n4 button{animation:glow 1.8s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 0 4px #fff,0 0 22px 8px rgba(255,213,74,.95)}}
+.hat{position:absolute;top:-26px;right:-6px;width:40px;height:auto;transform:rotate(18deg);pointer-events:none}
 .cd{display:flex;justify-content:center;gap:10px}
 .cd div{flex:1;max-width:100px;padding:12px 4px;border-radius:20px}
 .cd div:nth-child(1){background:var(--pink)}.cd div:nth-child(2){background:var(--mint)}.cd div:nth-child(3){background:var(--lav)}
@@ -88,7 +109,7 @@ body:not(.open) .names h1{opacity:0}
 #cdmsg{font-family:'Fredoka',sans-serif;font-size:26px;font-weight:700}
 
 @media (prefers-reduced-motion:reduce){
- .cloud,.drop,#open,.bub,.bday svg,.polaroid,#photo.show{animation:none}
+ .cloud,.drop,#open,.bub,.bday svg,.polaroid,#photo.show,.flame,.bl,.n4 button{animation:none}
  .rv,body:not(.open) .names h1,.names h1.rv{opacity:1}
  body.open .rv{animation:none}
  .names h1{transform:rotate(var(--r))}
@@ -125,7 +146,7 @@ body:not(.open) .names h1{opacity:0}
     <h1 class="n1 rv" style="--i:3"><button type="button" data-name="Mahaliana" data-photo="photos/mahaliana.jpg">Mahaliana</button></h1>
     <h1 class="n2 rv" style="--i:4"><button type="button" data-name="Ihantana" data-photo="photos/ihantana.jpg">Ihantana</button></h1>
     <h1 class="n3 rv" style="--i:5"><button type="button" data-name="Antso" data-photo="photos/antso.jpg">Antso</button></h1>
-    <h1 class="n4 rv" style="--i:6"><button type="button" data-name="Aiko" data-photo="photos/aiko.jpg">Aiko</button></h1>
+    <h1 class="n4 rv" style="--i:6"><button type="button" data-name="Aiko" data-photo="photos/aiko.jpg">Aiko</button><svg class="hat" viewBox="0 0 40 46" aria-hidden="true"><path d="M20 6L36 42H4Z" fill="#FF7A8A" stroke="#1F3A5F" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="6" r="5" fill="#FFD54A" stroke="#1F3A5F" stroke-width="2.5"/><circle cx="16" cy="28" r="3" fill="#fff"/><circle cx="25" cy="34" r="3" fill="#fff"/></svg></h1>
    </div>
    <p class="hint rv" style="--i:7">Tsindrio ny anarana hijery ny sary</p>
    <p class="invite-text rv" style="--i:8">Dia faly manasa anareo amin’ny fanatrehana ny batisan’izy efatra mianadahy amin’ny 21 Novambra 2026</p>
@@ -145,9 +166,13 @@ body:not(.open) .names h1{opacity:0}
     <p class="big">Ivato</p>
     <a class="btn" href="https://maps.app.goo.gl/DQbmeQJQLhnXNjW26" target="_blank" rel="noopener">Jereo amin’ny Google Maps</a>
    </div>
-   <div class="card bday">
-    <svg viewBox="0 0 64 90" aria-hidden="true"><path d="M32 4C16 4 8 18 8 30c0 14 12 26 24 26s24-12 24-26C56 18 48 4 32 4Z" fill="#FF7A8A" stroke="#1F3A5F" stroke-width="3"/><path d="M32 56l-5 8h10Z" fill="#FF7A8A" stroke="#1F3A5F" stroke-width="3" stroke-linejoin="round"/><path d="M32 64c-6 8 6 14 0 24" fill="none" stroke="#1F3A5F" stroke-width="3" stroke-linecap="round"/><path d="M20 20q4-8 12-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/></svg>
-    <p class="fr" style="font-size:22px;font-weight:600">Marihana fa ny anniversaire an’i Aiko ihany koa amin’io andro io.</p>
+   <div class="card bday" id="bday">
+    <span class="bl" aria-hidden="true" style="left:6%;background:#FF7A8A;animation-duration:9s;animation-delay:-0s"></span><span class="bl" aria-hidden="true" style="left:22%;background:#5CC3F0;animation-duration:12s;animation-delay:-3s"></span><span class="bl" aria-hidden="true" style="left:38%;background:#8FE0C4;animation-duration:15s;animation-delay:-6s"></span><span class="bl" aria-hidden="true" style="left:60%;background:#C6B8F5;animation-duration:13s;animation-delay:-9s"></span><span class="bl" aria-hidden="true" style="left:76%;background:#FFB3C1;animation-duration:16s;animation-delay:-12s"></span><span class="bl" aria-hidden="true" style="left:90%;background:#FFD54A;animation-duration:14s;animation-delay:-15s"></span>
+    <svg class="garland" viewBox="0 0 400 66" preserveAspectRatio="none" aria-hidden="true"><path d="M0 6Q200 40 400 6" fill="none" stroke="#1F3A5F" stroke-width="2.5"/><path d="M17 10L47 10L32 41Z" fill="#FF7A8A" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M53 15L83 15L68 46Z" fill="#5CC3F0" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M89 18L119 18L104 49Z" fill="#8FE0C4" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M125 20L155 20L140 51Z" fill="#C6B8F5" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M161 22L191 22L176 53Z" fill="#FFD54A" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M197 22L227 22L212 53Z" fill="#FF7A8A" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M233 21L263 21L248 52Z" fill="#5CC3F0" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M269 19L299 19L284 50Z" fill="#8FE0C4" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M305 16L335 16L320 47Z" fill="#C6B8F5" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M341 12L371 12L356 43Z" fill="#FFD54A" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/><path d="M377 6L407 6L392 37Z" fill="#FF7A8A" stroke="#1F3A5F" stroke-width="2" stroke-linejoin="round"/></svg>
+    <p class="bt">Anniversaire an’i Aiko</p>
+    <button class="cake" id="cake" type="button" aria-label="Tsofy ny labozia" aria-pressed="false"><svg viewBox="0 -12 130 142" aria-hidden="true"><ellipse cx="65" cy="118" rx="62" ry="9" fill="#fff" stroke="#1F3A5F" stroke-width="3"/><rect x="14" y="80" width="102" height="34" rx="8" fill="#FFB3C1" stroke="#1F3A5F" stroke-width="3"/><circle cx="34" cy="97" r="4" fill="#fff"/><circle cx="65" cy="100" r="4" fill="#fff"/><circle cx="96" cy="97" r="4" fill="#fff"/><rect x="30" y="52" width="70" height="30" rx="8" fill="#C6B8F5" stroke="#1F3A5F" stroke-width="3"/><path d="M30 62q9 12 18 0t17 0 17 0 18 0" fill="#fff" stroke="#1F3A5F" stroke-width="3" stroke-linejoin="round"/><rect x="61" y="30" width="8" height="24" rx="2" fill="#5CC3F0" stroke="#1F3A5F" stroke-width="2.5"/><g class="flame"><path d="M65 6C73 15 73 23 65 28C57 23 57 15 65 6Z" fill="#FFD54A" stroke="#F08A24" stroke-width="2.5"/></g><path class="smoke" d="M65 26q-7-8 0-14t0-14" fill="none" stroke="#8A9BB0" stroke-width="3" stroke-linecap="round"/></svg></button>
+    <p id="wish" aria-live="polite">Appuie sur le gâteau pour célébrer !</p>
+    <p class="fr" style="font-size:20px;font-weight:600;margin-top:8px">Marihana fa ny anniversaire an’i Aiko ihany koa amin’io andro io.</p>
    </div>
    <div class="card" style="--c:var(--lav)">
     <h2>Sisa</h2>
@@ -222,6 +247,30 @@ body:not(.open) .names h1{opacity:0}
  pclose.addEventListener('click',hide);
  ov.addEventListener('click',function(e){if(e.target===ov)hide();});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))hide();});
+
+ // Anniversaire d'Aiko
+ var bday=document.getElementById('bday'),cake=document.getElementById('cake'),wish=document.getElementById('wish');
+ function confetti(n){
+  if(calm)return;
+  for(var k=0;k<n;k++){
+   var c=document.createElement('span');c.className='conf';
+   c.style.cssText='left:'+Math.random()*100+'%;background:'+colors[k%5]+';animation-duration:'+(2.4+Math.random()*2.2)+'s;animation-delay:'+Math.random()*.6+'s';
+   document.body.appendChild(c);
+   setTimeout(function(el){el.remove()},6000,c);
+  }
+ }
+ cake.addEventListener('click',function(){
+  var out=bday.classList.toggle('out');
+  cake.setAttribute('aria-pressed',out);
+  wish.textContent=out?'Joyeux anniversaire Aiko !':'Tsindrio ny mofomamy hamono ny labozia';
+  if(out)confetti(60);
+ });
+ if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+   es.forEach(function(e){if(e.isIntersecting){confetti(36);io.disconnect();}});
+  },{threshold:.7});
+  io.observe(bday);
+ }
 
  var target=new Date('2026-11-21T10:00:00+03:00').getTime();
  function tick(){
