@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="mg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fanasana – Batisa 21 Novambra 2026</title>
+<meta name="theme-color" content="#BDE7FA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#BDE7FA;--sun:#FFD54A;--coral:#C93D22;--pink:#FFB3C1;--mint:#8FE0C4;--lav:#C6B8F5;--ink:#1F3A5F;--cream:#FFF8E7}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--sky);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-size:18px;line-height:1.6}
+h1,h2,p{margin:0}
+.fr{font-family:'Fredoka','Trebuchet MS',sans-serif}
+.cloud{position:absolute;width:120px;height:38px;background:#fff;border-radius:40px;opacity:.9;animation:drift 40s linear infinite}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud::before{width:54px;height:54px;left:18px;top:-26px}
+.cloud::after{width:40px;height:40px;left:62px;top:-18px}
+@keyframes drift{from{transform:translateX(-160px)}to{transform:translateX(calc(100vw + 160px))}}
+
+/* Porte */
+#gate{position:fixed;inset:0;z-index:10;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;background:linear-gradient(#8ED3F4,#E6F6FD);transition:opacity .7s ease,visibility 0s linear .7s}
+body.open #gate{opacity:0;visibility:hidden}
+#gate .hello{position:relative;font-size:30px;font-weight:600}
+.drop{position:relative;width:150px;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px) rotate(3deg)}}
+#open{position:relative;font:600 22px 'Fredoka',sans-serif;color:var(--ink);background:var(--sun);border:0;border-radius:999px;padding:16px 34px;min-height:56px;cursor:pointer;box-shadow:0 6px 0 #E0A92B;animation:pulse 1.8s ease-in-out infinite}
+#open:active{transform:translateY(4px);box-shadow:0 2px 0 #E0A92B}
+@keyframes pulse{50%{transform:scale(1.07)}}
+#open:focus-visible,.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* Invitation */
+#invite{visibility:hidden}
+body.open #invite{visibility:visible}
+.hero{position:relative;overflow:hidden;text-align:center;padding:48px 20px 64px;background:linear-gradient(#8ED3F4,#E6F6FD)}
+.wrap{position:relative;max-width:520px;margin:0 auto}
+.bub{position:absolute;bottom:-40px;border-radius:50%;background:rgba(255,255,255,.45);border:2px solid rgba(255,255,255,.9);animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-110vh)}}
+.verse{background:#fff;border-radius:28px;padding:22px 22px 18px;font-size:17px;line-height:1.65;box-shadow:0 6px 0 rgba(31,58,95,.12)}
+.verse cite{display:block;margin-top:10px;font-style:normal;font-weight:700;font-size:15px;color:#2A6FB0}
+.lead{margin-top:40px;font-size:22px;font-weight:600}
+.names{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.names h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(26px,7.5vw,36px);line-height:1.2;padding:18px 8px;border-radius:26px;box-shadow:0 6px 0 rgba(31,58,95,.18)}
+.n1{background:var(--pink);--r:-3deg}.n2{background:var(--sun);--r:2.5deg}.n3{background:var(--mint);--r:2deg}.n4{background:var(--lav);--r:-2.5deg}
+.invite-text{margin-top:30px;font-size:19px;font-weight:700}
+.rv{opacity:0}
+body.open .rv{animation:pop .8s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(.5s + var(--i)*.25s)}
+body.open .names h1{animation-name:popr}
+@keyframes pop{from{opacity:0;transform:scale(.4) translateY(20px)}to{opacity:1;transform:none}}
+@keyframes popr{from{opacity:0;transform:scale(.3) rotate(0)}to{opacity:1;transform:rotate(var(--r))}}
+.names h1.rv{opacity:1}
+body:not(.open) .names h1{opacity:0}
+
+.conf{position:fixed;top:-20px;z-index:20;width:10px;height:16px;border-radius:3px;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+/* Infos */
+.info{background:var(--cream);padding:48px 20px 72px}
+.info .wrap{display:grid;gap:22px;text-align:center}
+.card{background:#fff;border-radius:28px;padding:24px 20px;border:4px solid var(--c,#8ED3F4)}
+.card h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px;margin-bottom:6px}
+.card .big{font-family:'Fredoka',sans-serif;font-weight:700;font-size:26px;line-height:1.25}
+.btn{display:inline-block;margin-top:14px;padding:12px 24px;min-height:48px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;box-shadow:0 4px 0 rgba(31,58,95,.35)}
+.btn:hover{background:#2A5388}
+.bday{--c:var(--sun);background:#FFF1B8}
+.bday svg{width:64px;height:auto;animation:bob 2.2s ease-in-out infinite}
+.cd{display:flex;justify-content:center;gap:10px}
+.cd div{flex:1;max-width:100px;padding:12px 4px;border-radius:20px}
+.cd div:nth-child(1){background:var(--pink)}.cd div:nth-child(2){background:var(--mint)}.cd div:nth-child(3){background:var(--lav)}
+.cd b{display:block;font-family:'Fredoka',sans-serif;font-size:36px;line-height:1.1}
+.cd span{font-size:15px;font-weight:700}
+#cdmsg{font-family:'Fredoka',sans-serif;font-size:26px;font-weight:700}
+
+@media (prefers-reduced-motion:reduce){
+ .cloud,.drop,#open,.bub,.bday svg{animation:none}
+ .rv,body:not(.open) .names h1,.names h1.rv{opacity:1}
+ body.open .rv{animation:none}
+ .names h1{transform:rotate(var(--r))}
+}
+</style>
+</head>
+<body>
+
+<div id="gate">
+ <span class="cloud" style="top:12%;animation-duration:38s"></span>
+ <span class="cloud" style="top:70%;animation-duration:52s;animation-delay:-20s"></span>
+ <svg class="drop" viewBox="0 0 120 150" aria-hidden="true">
+  <path d="M60 8C60 8 14 62 14 98a46 46 0 0 0 92 0C106 62 60 8 60 8Z" fill="#5CC3F0" stroke="#1F3A5F" stroke-width="4"/>
+  <ellipse cx="42" cy="82" rx="7" ry="10" fill="#fff" opacity=".6" transform="rotate(20 42 82)"/>
+  <circle cx="45" cy="98" r="6" fill="#1F3A5F"/><circle cx="75" cy="98" r="6" fill="#1F3A5F"/>
+  <path d="M46 116q14 14 28 0" stroke="#1F3A5F" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="34" cy="112" r="6" fill="#FFB3C1"/><circle cx="86" cy="112" r="6" fill="#FFB3C1"/>
+ </svg>
+ <p class="hello fr">Fanasana manokana ho anao!</p>
+ <button id="open" type="button">Tsindrio hanokatra</button>
+</div>
+
+<main id="invite">
+ <section class="hero">
+  <span class="cloud" style="top:5%;animation-duration:44s"></span>
+  <span class="cloud" style="top:38%;animation-duration:60s;animation-delay:-30s"></span>
+  <div id="bubbles" aria-hidden="true"></div>
+  <div class="wrap">
+   <p class="verse rv" style="--i:0">« Hitahy anao anie Jehovah ka hiaro anao; Hampamirapiratra ny tavany aminao anie Jehovah ka hamindra fo aminao; Hanandratra ny tavany aminao anie Jehovah ka hanome anao fiadanana. »
+    <cite>Nomery 6:24-26 (Ny Tsodranon’i Arona)</cite></p>
+
+   <p class="lead fr rv" style="--i:2">Izahay Ray aman-drenin’i</p>
+   <div class="names">
+    <h1 class="n1 rv" style="--i:3">Mahaliana</h1>
+    <h1 class="n2 rv" style="--i:4">Ihantana</h1>
+    <h1 class="n3 rv" style="--i:5">Antso</h1>
+    <h1 class="n4 rv" style="--i:6">Aiko</h1>
+   </div>
+   <p class="invite-text rv" style="--i:8">Dia faly manasa anareo amin’ny fanatrehana ny batisan’izy efatra mianadahy amin’ny 21 Novambra 2026</p>
+  </div>
+ </section>
+
+ <section class="info">
+  <div class="wrap">
+   <div class="card" style="--c:#8ED3F4">
+    <h2>Fotoam-pivavahana</h2>
+    <p class="big">Asabotsy 21 Novambra 2026<br>10 ora tsy diso</p>
+    <p style="margin-top:8px;font-weight:700">FJKM Andavamamba</p>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=FJKM+Andavamamba+Antananarivo" target="_blank" rel="noopener">Jereo amin’ny Google Maps</a>
+   </div>
+   <div class="card" style="--c:var(--mint)">
+    <h2>Fiarahana misakafo</h2>
+    <p class="big">Ivato</p>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Ivato+Antananarivo" target="_blank" rel="noopener">Jereo amin’ny Google Maps</a>
+   </div>
+   <div class="card bday">
+    <svg viewBox="0 0 64 90" aria-hidden="true"><path d="M32 4C16 4 8 18 8 30c0 14 12 26 24 26s24-12 24-26C56 18 48 4 32 4Z" fill="#FF7A8A" stroke="#1F3A5F" stroke-width="3"/><path d="M32 56l-5 8h10Z" fill="#FF7A8A" stroke="#1F3A5F" stroke-width="3" stroke-linejoin="round"/><path d="M32 64c-6 8 6 14 0 24" fill="none" stroke="#1F3A5F" stroke-width="3" stroke-linecap="round"/><path d="M20 20q4-8 12-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/></svg>
+    <p class="fr" style="font-size:22px;font-weight:600">Marihana fa ny anniversaire an’i Aiko ihany koa amin’io andro io.</p>
+   </div>
+   <div class="card" style="--c:var(--lav)">
+    <h2>Sisa</h2>
+    <div class="cd" id="cd" role="timer" aria-live="off">
+     <div><b id="d">0</b><span>andro</span></div>
+     <div><b id="h">0</b><span>ora</span></div>
+     <div><b id="m">0</b><span>minitra</span></div>
+    </div>
+    <p id="cdmsg" hidden>Anio ny andro lehibe!</p>
+   </div>
+  </div>
+ </section>
+</main>
+
+<script>
+(function(){
+ var body=document.body,colors=['#FF7A8A','#FFD54A','#5CC3F0','#8FE0C4','#C6B8F5'];
+ var calm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+ document.getElementById('open').addEventListener('click',function(){
+  body.classList.add('open');
+  window.scrollTo(0,0);
+  if(calm)return;
+  for(var i=0;i<46;i++){
+   var c=document.createElement('span');c.className='conf';
+   c.style.cssText='left:'+Math.random()*100+'%;background:'+colors[i%5]+';animation-duration:'+(2.6+Math.random()*2.4)+'s;animation-delay:'+Math.random()*.8+'s';
+   document.body.appendChild(c);
+   setTimeout(function(el){el.remove()},6500,c);
+  }
+ });
+
+ var box=document.getElementById('bubbles');
+ for(var j=0;j<12;j++){
+  var s=document.createElement('span');s.className='bub';
+  var size=14+Math.random()*30;
+  s.style.cssText='left:'+Math.random()*100+'%;width:'+size+'px;height:'+size+'px;animation-duration:'+(9+Math.random()*9)+'s;animation-delay:'+(-Math.random()*12)+'s';
+  box.appendChild(s);
+ }
+
+ var target=new Date('2026-11-21T10:00:00+03:00').getTime();
+ function tick(){
+  var diff=target-Date.now();
+  if(diff<=0){document.getElementById('cd').hidden=true;document.getElementById('cdmsg').hidden=false;return;}
+  var min=Math.floor(diff/60000);
+  document.getElementById('d').textContent=Math.floor(min/1440);
+  document.getElementById('h').textContent=Math.floor((min%1440)/60);
+  document.getElementById('m').textContent=min%60;
+ }
+ tick();setInterval(tick,30000);
+})();
+</script>
+</body>
+</html>
