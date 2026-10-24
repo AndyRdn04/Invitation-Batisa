@@ -262,7 +262,7 @@ body:not(.open) .names h1{opacity:0}
  cake.addEventListener('click',function(){
   var out=bday.classList.toggle('out');
   cake.setAttribute('aria-pressed',out);
-  wish.textContent=out?'Joyeux anniversaire Aiko !':'Tsindrio ny mofomamy hamono ny labozia';
+  wish.textContent=out?'Joyeux anniversaire Aiko !':'Appuye sur le gateau pour celebrer !';
   if(out)confetti(60);
  });
  if('IntersectionObserver' in window){
