@@ -42,7 +42,21 @@ body.open #invite{visibility:visible}
 .verse cite{display:block;margin-top:10px;font-style:normal;font-weight:700;font-size:15px;color:#2A6FB0}
 .lead{margin-top:40px;font-size:22px;font-weight:600}
 .names{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.names h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(26px,7.5vw,36px);line-height:1.2;padding:18px 8px;border-radius:26px;box-shadow:0 6px 0 rgba(31,58,95,.18)}
+.names h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(26px,7.5vw,36px);line-height:1.2;padding:0;border-radius:26px;box-shadow:0 6px 0 rgba(31,58,95,.18)}
+.names button{all:unset;display:block;box-sizing:border-box;width:100%;padding:18px 8px;border-radius:26px;cursor:pointer;text-align:center;transition:transform .15s}
+.names button:active{transform:scale(.93)}
+.names button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hint{margin-top:14px;font-size:16px;font-weight:700;color:#2A6FB0}
+#photo{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(31,58,95,.6)}
+#photo.show{display:flex;animation:fadein .3s ease}
+@keyframes fadein{from{opacity:0}}
+.polaroid{position:relative;width:min(82vw,340px);padding:14px 14px 20px;background:#fff;border-radius:10px;text-align:center;box-shadow:0 12px 0 rgba(0,0,0,.14);transform:rotate(-3deg);animation:drop .75s cubic-bezier(.34,1.56,.64,1)}
+@keyframes drop{from{transform:translateY(-70vh) rotate(-28deg) scale(.6);opacity:0}to{transform:rotate(-3deg);opacity:1}}
+.polaroid::before{content:'';position:absolute;top:-13px;left:50%;width:96px;height:28px;margin-left:-48px;background:var(--tape,#FFD54A);opacity:.85;transform:rotate(3deg)}
+.polaroid img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:4px;background:#eee}
+.polaroid p{margin-top:12px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:30px;line-height:1.2}
+#pclose{position:absolute;top:-16px;right:-16px;width:46px;height:46px;border:0;border-radius:50%;background:var(--ink);color:#fff;font:600 28px/1 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 rgba(31,58,95,.4)}
+#pclose:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .n1{background:var(--pink);--r:-3deg}.n2{background:var(--sun);--r:2.5deg}.n3{background:var(--mint);--r:2deg}.n4{background:var(--lav);--r:-2.5deg}
 .invite-text{margin-top:30px;font-size:19px;font-weight:700}
 .rv{opacity:0}
@@ -74,7 +88,7 @@ body:not(.open) .names h1{opacity:0}
 #cdmsg{font-family:'Fredoka',sans-serif;font-size:26px;font-weight:700}
 
 @media (prefers-reduced-motion:reduce){
- .cloud,.drop,#open,.bub,.bday svg{animation:none}
+ .cloud,.drop,#open,.bub,.bday svg,.polaroid,#photo.show{animation:none}
  .rv,body:not(.open) .names h1,.names h1.rv{opacity:1}
  body.open .rv{animation:none}
  .names h1{transform:rotate(var(--r))}
@@ -108,11 +122,12 @@ body:not(.open) .names h1{opacity:0}
 
    <p class="lead fr rv" style="--i:2">Izahay Ray aman-drenin’i</p>
    <div class="names">
-    <h1 class="n1 rv" style="--i:3">Mahaliana</h1>
-    <h1 class="n2 rv" style="--i:4">Ihantana</h1>
-    <h1 class="n3 rv" style="--i:5">Antso</h1>
-    <h1 class="n4 rv" style="--i:6">Aiko</h1>
+    <h1 class="n1 rv" style="--i:3"><button type="button" data-name="Mahaliana" data-photo="photos/mahaliana.jpg">Mahaliana</button></h1>
+    <h1 class="n2 rv" style="--i:4"><button type="button" data-name="Ihantana" data-photo="photos/ihantana.jpg">Ihantana</button></h1>
+    <h1 class="n3 rv" style="--i:5"><button type="button" data-name="Antso" data-photo="photos/antso.jpg">Antso</button></h1>
+    <h1 class="n4 rv" style="--i:6"><button type="button" data-name="Aiko" data-photo="photos/aiko.jpg">Aiko</button></h1>
    </div>
+   <p class="hint rv" style="--i:7">Tsindrio ny anarana hijery ny sary</p>
    <p class="invite-text rv" style="--i:8">Dia faly manasa anareo amin’ny fanatrehana ny batisan’izy efatra mianadahy amin’ny 21 Novambra 2026</p>
   </div>
  </section>
@@ -147,6 +162,14 @@ body:not(.open) .names h1{opacity:0}
  </section>
 </main>
 
+<div id="photo" aria-hidden="true">
+ <div class="polaroid" role="dialog" aria-modal="true" aria-labelledby="pname">
+  <button id="pclose" type="button" aria-label="Akatony">&times;</button>
+  <img id="pimg" alt="">
+  <p id="pname"></p>
+ </div>
+</div>
+
 <script>
 (function(){
  var body=document.body,colors=['#FF7A8A','#FFD54A','#5CC3F0','#8FE0C4','#C6B8F5'];
@@ -171,6 +194,34 @@ body:not(.open) .names h1{opacity:0}
   s.style.cssText='left:'+Math.random()*100+'%;width:'+size+'px;height:'+size+'px;animation-duration:'+(9+Math.random()*9)+'s;animation-delay:'+(-Math.random()*12)+'s';
   box.appendChild(s);
  }
+
+
+ // Photos des enfants
+ var tapes={Mahaliana:'#FFB3C1',Ihantana:'#FFD54A',Antso:'#8FE0C4',Aiko:'#C6B8F5'};
+ var ov=document.getElementById('photo'),pimg=document.getElementById('pimg'),pname=document.getElementById('pname'),pclose=document.getElementById('pclose'),opener=null;
+ function ph(col){
+  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect width="300" height="300" fill="'+col+'"/><circle cx="150" cy="120" r="55" fill="#fff" opacity=".85"/><path d="M50 300c0-70 45-105 100-105s100 35 100 105Z" fill="#fff" opacity=".85"/></svg>';
+  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+ }
+ function show(btn){
+  var n=btn.getAttribute('data-name');
+  opener=btn;
+  pimg.onerror=function(){pimg.onerror=null;pimg.src=ph(tapes[n]);};
+  pimg.alt='Sarin’i '+n;
+  pimg.src=btn.getAttribute('data-photo');
+  pname.textContent=n;
+  ov.querySelector('.polaroid').style.setProperty('--tape',tapes[n]);
+  ov.classList.add('show');ov.setAttribute('aria-hidden','false');
+  pclose.focus();
+ }
+ function hide(){
+  ov.classList.remove('show');ov.setAttribute('aria-hidden','true');
+  if(opener)opener.focus();
+ }
+ Array.prototype.forEach.call(document.querySelectorAll('.names button'),function(b){b.addEventListener('click',function(){show(b);});});
+ pclose.addEventListener('click',hide);
+ ov.addEventListener('click',function(e){if(e.target===ov)hide();});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))hide();});
 
  var target=new Date('2026-11-21T10:00:00+03:00').getTime();
  function tick(){
